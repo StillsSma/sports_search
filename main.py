@@ -11,21 +11,12 @@ print("Welcome to Sports!")
 
 
 def search():
-    answer = input("search for player: ")
-    for tupples in results:
-        if answer in tupples[0]:
-            print (*tupples)
-            modify = input("Would you like to modify player data?y/n ")
-            if modify == 'y':
-                pass
-            if modify == 'n':
-                pass
-            menu()
-        else:
-            continue
-    print("Sorry, not results found.")
-    search()
 
+    name = input("Search for player by first and last name: ")
+    print (name)
+    cursor.execute("SELECT * FROM corn_huskers where Player = %s", [name])
+    results = cursor.fetchall()
+    print(results)
 
 def menu():
     choice = input("Would you like to search[s] or add new data[a]? ")
@@ -48,8 +39,7 @@ def add_data():
 
 menu()
 
-cursor.execute("SELECT * FROM corn_huskers")
-results = cursor.fetchall()
+
 
 
 connection.commit()
